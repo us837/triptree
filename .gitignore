@@ -1,0 +1,42 @@
+# Dependency and build files
+node_modules/
+dist/
+build/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS files
+Thumbs.db
+.Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Build artifacts
+*.o
+*.a
+*.so
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+
+# Local development
+.cache/
+.local/

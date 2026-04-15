@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<!--
+  To change the theme, change the class on the html tag below to one of:
+  - theme-auto: Automatically switches based on user's system preferences
+  - theme-light: Forces light theme
+  - theme-dark: Forces dark theme
+-->
+
+<html class="theme-auto" lang="en"> <!-- Update`class="theme-auto" with your preference -->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Page Title - Change this to your name/brand (50-60 characters recommended) -->
+    <title></title>
+    <link rel="icon" type="image/x-icon" href="/images/avatar.png"> <!-- Update this with your own favicon -->
+
+    <!-- Meta Description - Write a description (150-160 characters recommended) -->
+    <meta name="description" content="">
+
+    <!-- Keywords -->
+    <meta name="keywords" content="">
+
+    <!-- Canonical URL - Helps prevent duplicate content issues -->
+    <meta rel="canonical" href="">       <!-- Update this with your own URL ujwal later -->
+
+    <!-- Author Information -->
+    <meta name="author" content="">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/brands.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <!-- LittleLink Extended Stylesheet (Optional) -->
+    <!-- <link rel="stylesheet" href="css/brands-extended.css"> -->
+    <!-- Learn more at https://github.com/sethcottle/littlelink-extended.
+         Remove comments if you've added LittleLink Extended dependencies -->
+
+  </head>
+
+<body>
+
+    <div class="container">
+        <div class="column">
+
+            <!--
+              By default, the Avatar is rounded. Use the following:
+              - avatar--rounded: Automatically rounds the image
+              - avatar--soft: Slightly rounds the image
+              - avatar--none: Removes any rounding
+
+              Be sure to replace the src with your own image path and update the alt text
+            -->
+            <div style="position: relative; display: inline-block;">
+              <img class="avatar avatar--rounded" id="userProfileImage" alt="Profile Picture" style="display: none;">
+              <button id="editProfileBtn" class="btn-secondary" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">Edit Profile</button>
+            </div>
+
+            <!-- Replace with your name or brand -->
+            <h1>
+              <div>Your Name</div>
+            </h1>
+
+            <!-- Add a short description about yourself or your brand -->
+            <p>Welcome to my profile — explore my work and connect with me.</p>
+
+            <!-- All your buttons go here -->
+            <div class="button-stack" role="navigation" id="linksList">
+              <p class="no-links">No links added yet. Click "Add New App" to get started!</p>
+            </div>
+
+            <!-- Add New App Button -->
+            <button id="addLinkBtn" class="btn-primary" style="margin-top: 2rem; padding: 0.75rem 2rem; font-size: 1rem;">+ Add New App</button>
+
+            <!-- Done Button (Share Link) -->
+            <button id="doneBtn" class="btn-primary" style="margin-top: 1rem; padding: 0.75rem 2rem; font-size: 1rem; background-color: #27ae60;">✓ Done & Share</button>
+
+              <!-- Amazon Music -->
+              <!--<a class="button button-amazon-music" href="#" target="_blank" rel="noopener" role="button"><img class="icon" aria-hidden="true" src="images/icons/amazon-music.svg" alt="Amazon Music Logo">Listen on Amazon Music</a> -->
+
+              <!-- Apple App Store -->
+
+      </div>
+
+      <!-- Modal Overlays -->
+      
+      <!-- Profile Edit Form -->
+      <div id="profileFormOverlay" class="form-overlay">
+        <div class="form-container">
+          <button class="close-form">&times;</button>
+          <h2>Edit Profile</h2>
+          
+          <div class="image-upload-section">
+            <p><strong>Profile Picture</strong></p>
+            <p style="font-size: 0.875rem; color: #666; margin: 0.5rem 0;">Upload a photo to represent your profile</p>
+            <div class="image-preview">
+              <img class="avatar avatar--rounded" id="previewImage" alt="Profile Preview" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; background: #f0f0f0; display: none;">
+            </div>
+            <label for="imageUpload" class="upload-button">Choose Image</label>
+            <input type="file" id="imageUpload" accept="image/*">
+          </div>
+
+          <form id="profileForm">
+            <div class="form-group">
+              <label for="profileName">Name *</label>
+              <input type="text" id="profileName" name="name" required placeholder="Your Name">
+            </div>
+
+            <div class="form-group">
+              <label for="profileBio">Bio</label>
+              <textarea id="profileBio" name="bio" placeholder="Tell us about yourself..."></textarea>
+            </div>
+
+            <div class="control-buttons">
+              <button type="submit" class="btn-primary">Save Profile</button>
+              <button type="button" class="btn-secondary" onclick="document.getElementById('profileFormOverlay').style.display='none'">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Add Link Form -->
+      <div id="linkFormOverlay" class="form-overlay">
+        <div class="form-container">
+          <button class="close-form">&times;</button>
+          <h2>Add New App</h2>
+
+          <form id="linkForm">
+            <div class="form-group">
+              <label for="platformSearch">Search Platform *</label>
+              <div class="search-container">
+                <input type="text" id="platformSearch" placeholder="Search for a platform... (e.g., GitHub, LinkedIn, Twitter)">
+                <div id="platformSuggestions"></div>
+              </div>
+              <div id="selectedPlatformDisplay"></div>
+              <input type="hidden" id="platformSelect" name="platform" required value="">
+            </div>
+
+            <div class="form-group">
+              <label for="linkUrl">Profile URL *</label>
+              <input type="url" id="linkUrl" name="url" required placeholder="https://example.com/yourprofile">
+            </div>
+
+            <div class="control-buttons">
+              <button type="submit" class="btn-primary">Add Link</button>
+              <button type="button" class="btn-secondary" onclick="document.getElementById('linkFormOverlay').style.display='none'">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Share Link Modal -->
+      <div id="shareModal" class="form-overlay" style="display: none;">
+        <div class="form-container share-modal-container">
+          <button class="close-form" onclick="document.getElementById('shareModal').style.display='none'">&times;</button>
+          <h2>Share Your Profile</h2>
+          
+          <p style="color: #666; margin-bottom: 1.5rem;">Copy this link and share it with others:</p>
+          
+          <div class="share-link-box">
+            <span id="shareLinkDisplay" style="word-break: break-all;"></span>
+          </div>
+          
+          <button id="copyLinkBtn" class="btn-primary" style="width: 100%; margin-top: 1rem; padding: 0.75rem;">
+            📋 Copy Link
+          </button>
+          
+          <p style="color: #999; font-size: 0.875rem; margin-top: 1rem; text-align: center;">
+            Share on LinkedIn, Twitter, or anywhere else!<br>
+            Visitors will see your profile without edit options.
+          </p>
+          
+          <button type="button" class="btn-secondary" onclick="document.getElementById('shareModal').style.display='none'" style="width: 100%; margin-top: 1rem;">
+            Close
+          </button>
+        </div>
+      </div>
+
+      <footer>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Interactive App Script -->
+  <script>
+    // Mode detection: Based purely on URL parameter
+    // ?edit=true = Edit mode (for creators)
+    // No parameters = View mode (for visitors/shared links)
+  </script>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
