@@ -29,8 +29,9 @@ const APP = (() => {
   };
 
   // Determine if we're in edit mode
+  // Default is edit mode (editable page), view mode requires ?view=true
   const isEditMode = () => {
-    return new URLSearchParams(window.location.search).get('edit') === 'true';
+    return new URLSearchParams(window.location.search).get('view') !== 'true';
   };
 
   // Initialize app
@@ -159,8 +160,8 @@ const APP = (() => {
 
   // Handle Done button - generate shareable link
   const handleDoneClick = () => {
-    // Generate the view-only link (without the ?edit=true parameter)
-    const shareableLink = window.location.origin + window.location.pathname;
+    // Generate the view-only link (with the ?view=true parameter)
+    const shareableLink = window.location.origin + window.location.pathname + '?view=true';
     
     // Show the share modal
     const shareModal = document.getElementById('shareModal');
